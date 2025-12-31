@@ -23,10 +23,40 @@ const statusColors = {
   completed: 'bg-green-100 text-green-800'
 };
 
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123';
+
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'pending' | 'contacted' | 'completed'>('all');
+
+  // 세션 체크
+  useEffect(() => {
+    const auth = sessionStorage.getItem('admin_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      sessionStorage.setItem('admin_auth', 'true');
+      setIsAuthenticated(true);
+      setPasswordError('');
+    } else {
+      setPasswordError('비밀번호가 올바르지 않습니다.');
+    }
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('admin_auth');
+    setIsAuthenticated(false);
+    setPassword('');
+  };
 
   const fetchInquiries = useCallback(async () => {
     try {
@@ -41,8 +71,10 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    fetchInquiries();
-  }, [fetchInquiries]);
+    if (isAuthenticated) {
+      fetchInquiries();
+    }
+  }, [isAuthenticated, fetchInquiries]);
 
   const updateStatus = async (id: string, status: Inquiry['status']) => {
     try {
@@ -90,6 +122,56 @@ export default function AdminPage() {
     completed: inquiries.filter(i => i.status === 'completed').length
   };
 
+  // 로그인 화면
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+        <div className="max-w-md w-full">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <div className="text-center mb-8">
+              <div className="text-4xl mb-3">🔐</div>
+              <h1 className="text-2xl font-bold text-gray-800">로켓콜 어드민</h1>
+              <p className="text-gray-500 mt-2">관리자 비밀번호를 입력해주세요</p>
+            </div>
+
+            <form onSubmit={handleLogin}>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="비밀번호"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                  autoFocus
+                />
+              </div>
+
+              {passwordError && (
+                <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm">
+                  {passwordError}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-lg font-medium transition-colors"
+              >
+                로그인
+              </button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <a href="/" className="text-gray-500 hover:text-gray-700 text-sm">
+                ← 메인 페이지로
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 어드민 대시보드
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -99,12 +181,20 @@ export default function AdminPage() {
             <span className="text-2xl">🚗</span>
             <h1 className="text-xl font-bold text-gray-800">로켓콜 어드민</h1>
           </div>
-          <a
-            href="/"
-            className="text-gray-600 hover:text-gray-800 text-sm"
-          >
-            ← 메인 페이지로
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href="/"
+              className="text-gray-600 hover:text-gray-800 text-sm"
+            >
+              ← 메인 페이지로
+            </a>
+            <button
+              onClick={handleLogout}
+              className="text-red-500 hover:text-red-700 text-sm"
+            >
+              로그아웃
+            </button>
+          </div>
         </div>
       </header>
 
