@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import KakaoFloatingButton from "@/components/KakaoFloatingButton";
 
 export const metadata: Metadata = {
   title: "로켓콜 | 자동차 딜러 전문 약속콜 서비스",
@@ -29,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <KakaoFloatingButton />
       </body>
     </html>
   );
