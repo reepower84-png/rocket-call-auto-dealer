@@ -51,12 +51,22 @@ export default function Home() {
             <span className="text-2xl">🚗</span>
             <span className="text-xl font-bold text-gray-800">로켓콜</span>
           </div>
-          <button
-            onClick={scrollToForm}
-            className="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-          >
-            상담 신청
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://drive.google.com/file/d/1FGpJjks9asLnWIAS6wd7be0ARZDssLNM/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-primary-500 text-primary-500 hover:bg-primary-50 px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              제안서 보기
+            </a>
+            <button
+              onClick={scrollToForm}
+              className="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              상담 신청
+            </button>
+          </div>
         </div>
       </header>
 
