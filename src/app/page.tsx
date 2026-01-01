@@ -82,6 +82,7 @@ export default function Home() {
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             자동차 딜러를 위한 프리미엄 약속콜 서비스<br />
+            <span className="text-gray-400">(신차 딜러 · 중고차 딜러 · 장기렌트 딜러 · 리스 딜러)</span><br />
             <strong className="text-white">확정된 고객만 딱!</strong> 보내드립니다
           </p>
           <button
