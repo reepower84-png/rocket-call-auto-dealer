@@ -520,7 +520,7 @@ export default function Home() {
             © 2024 로켓콜. All rights reserved.
           </p>
           <div className="mt-4 pt-4 border-t border-gray-700 text-xs text-gray-500">
-            제이코리아 | 대표자: 이주영 | 사업자번호: 278-30-01540
+            상호: 제이코리아, 대표: 이주영, 사업자등록번호: 278-30-01540
           </div>
         </div>
       </footer>
