@@ -11,6 +11,10 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const scrollToForm = () => {
     document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -47,10 +51,10 @@ export default function Home() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="/" className="flex items-center gap-2 cursor-pointer">
+          <button onClick={scrollToTop} className="flex items-center gap-2 cursor-pointer">
             <span className="text-2xl">🚗</span>
             <span className="text-xl font-bold text-gray-800">로켓콜</span>
-          </a>
+          </button>
           <div className="flex items-center gap-2">
             <a
               href="https://drive.google.com/file/d/1FGpJjks9asLnWIAS6wd7be0ARZDssLNM/view?usp=sharing"
