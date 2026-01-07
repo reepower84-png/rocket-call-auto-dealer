@@ -105,8 +105,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Discord로 알림 전송 (비동기로 처리하여 응답 지연 방지)
-    sendDiscordNotification(name, phone, message).catch(console.error);
+    // Discord로 알림 전송 (완료될 때까지 대기)
+    await sendDiscordNotification(name, phone, message);
 
     return NextResponse.json(
       { message: '상담 신청이 완료되었습니다.', id: data.id },
