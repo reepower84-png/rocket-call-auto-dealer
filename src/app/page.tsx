@@ -512,18 +512,38 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-8 bg-gray-900 text-gray-400">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-2xl">🚗</span>
-            <span className="text-xl font-bold text-white">로켓콜</span>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
+            {/* 왼쪽: 기존 정보 */}
+            <div className="text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
+                <span className="text-2xl">🚗</span>
+                <span className="text-xl font-bold text-white">로켓콜</span>
+              </div>
+              <p className="text-sm">
+                자동차 딜러를 위한 프리미엄 약속콜 서비스
+              </p>
+              <p className="text-sm mt-4">
+                © 2024 로켓콜. All rights reserved.
+              </p>
+            </div>
+
+            {/* 오른쪽: 계열사 */}
+            <div className="text-center md:text-right">
+              <h4 className="text-white font-semibold mb-3">계열사</h4>
+              <ul className="space-y-1.5 text-sm">
+                <li><a href="https://rk-intro.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜 인트로</a></li>
+                <li><a href="https://rocket-call.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜_보험설계사</a></li>
+                <li><a href="https://rocket-call-realestate.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜_부동산분양</a></li>
+                <li><a href="https://rocket-call-hospital.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜_병원</a></li>
+                <li><a href="https://rocket-call-franchise.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜_프랜차이즈 가맹</a></li>
+                <li><a href="https://rk-policy.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜_정책자금</a></li>
+                <li><a href="https://rk-lawyer.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">로켓콜_변호사</a></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-sm">
-            자동차 딜러를 위한 프리미엄 약속콜 서비스
-          </p>
-          <p className="text-sm mt-4">
-            © 2024 로켓콜. All rights reserved.
-          </p>
-          <div className="mt-4 pt-4 border-t border-gray-700 text-xs text-gray-500">
+
+          <div className="mt-6 pt-4 border-t border-gray-700 text-xs text-gray-500 text-center">
             상호: 제이코리아, 대표: 이주영, 사업자등록번호: 278-30-01540
           </div>
         </div>
