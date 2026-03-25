@@ -503,6 +503,15 @@ export default function Home() {
               {isSubmitting ? '제출 중...' : '상담 신청하기'}
             </button>
 
+            <a
+              href="http://pf.kakao.com/_zxfugn/chat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full mt-3 bg-[#FEE500] hover:bg-[#F5DC00] text-[#3C1E1E] text-lg py-4 rounded-xl font-bold transition-all text-center"
+            >
+              카카오톡으로 상담하기
+            </a>
+
             <p className="text-center text-gray-500 text-sm mt-4">
               입력하신 정보는 상담 목적으로만 사용되며, 개인정보처리방침에 따라 보호됩니다.
             </p>
